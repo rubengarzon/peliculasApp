@@ -1,5 +1,10 @@
+import { environment } from './../../environments/environment';
+import { RespuestaMDB } from './../interfaces/index';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+const URL = environment.url;
+const apiKey = environment.apiKey;
 
 @Injectable({
   providedIn: 'root',
@@ -7,10 +12,13 @@ import { Injectable } from '@angular/core';
 export class MoviesService {
   constructor(private http: HttpClient) {}
 
+  ejecutarQuery<T>(query: string) {
+    query = `${URL}${query}?api_key=${apiKey}&language=es&include_image_language=es`;
+    console.log(query);
+    return this.http.get<T>(query);
+  }
+
   getFeature() {
-    return this.http.get(
-      // eslint-disable-next-line max-len
-      `https://api.themoviedb.org/3/discover/movie?primary_release_date.lte=2019-01-31&api_key=7d6cebd7375363a80d7b3517c7036ba6&language=es&include_image_language=es`
-    );
+    return this.ejecutarQuery<RespuestaMDB>('/movie/popular');
   }
 }
