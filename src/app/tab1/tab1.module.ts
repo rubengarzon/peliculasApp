@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../components/components.module';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,6 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 
 import { SwiperModule } from 'swiper/angular';
 import { PipesModule } from '../pipes/pipes.module';
-
 @NgModule({
   imports: [
     IonicModule,
@@ -19,6 +19,7 @@ import { PipesModule } from '../pipes/pipes.module';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
     SwiperModule,
+    ComponentsModule,
   ],
   declarations: [Tab1Page],
 })

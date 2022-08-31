@@ -18,7 +18,7 @@ export class MoviesService {
     return this.http.get<T>(query);
   }
 
-  getFeature() {
+  getPopular() {
     return this.ejecutarQuery<RespuestaMDB>('/movie/popular');
   }
 }

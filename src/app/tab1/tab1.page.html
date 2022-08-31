@@ -1,9 +1,18 @@
 <ion-content [fullscreen]="true">
-  <swiper [config]="{ slidesPerView: 1.3, freeMode: true }">
-    <ng-template swiperSlide *ngFor="let pelicula of peliculasRecientes">
-      <ion-card>
-        <img [src]="pelicula.backdrop_path | imagen">
-      </ion-card>
-    </ng-template>
-  </swiper>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Películas Populares</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-backdrop [peliculas]="peliculasPopulares"></app-slideshow-backdrop>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Cartelera</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-poster [peliculas]="peliculasPopulares"></app-slideshow-poster>
 </ion-content>

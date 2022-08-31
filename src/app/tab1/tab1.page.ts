@@ -8,13 +8,13 @@ import { Pelicula } from '../interfaces/index';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
-  peliculasRecientes: Pelicula[] = [];
+  peliculasPopulares: Pelicula[] = [];
 
   constructor(private movieService: MoviesService) {}
 
   ngOnInit() {
-    this.movieService.getFeature().subscribe((resp) => {
-      this.peliculasRecientes = resp.results;
+    this.movieService.getPopular().subscribe((resp) => {
+      this.peliculasPopulares = resp.results;
     });
   }
 }
