@@ -14,11 +14,21 @@ export class MoviesService {
 
   ejecutarQuery<T>(query: string) {
     query = `${URL}${query}?api_key=${apiKey}&language=es&include_image_language=es`;
-    console.log(query);
     return this.http.get<T>(query);
   }
 
   getPopular() {
-    return this.ejecutarQuery<RespuestaMDB>('/movie/popular');
+    const query = '/movie/popular';
+    return this.ejecutarQuery<RespuestaMDB>(query);
+  }
+
+  getNowPlaying() {
+    const query = '/movie/now_playing';
+    return this.ejecutarQuery<RespuestaMDB>(query);
+  }
+
+  getUpcoming() {
+    const query = '/movie/upcoming';
+    return this.ejecutarQuery<RespuestaMDB>(query);
   }
 }

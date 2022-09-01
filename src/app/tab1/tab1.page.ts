@@ -9,12 +9,20 @@ import { Pelicula } from '../interfaces/index';
 })
 export class Tab1Page implements OnInit {
   peliculasPopulares: Pelicula[] = [];
+  peliculasUpcoming: Pelicula[] = [];
+  peliculasNuevas: Pelicula[] = [];
 
   constructor(private movieService: MoviesService) {}
 
   ngOnInit() {
     this.movieService.getPopular().subscribe((resp) => {
       this.peliculasPopulares = resp.results;
+    });
+    this.movieService.getUpcoming().subscribe((resp) => {
+      this.peliculasUpcoming = resp.results;
+    });
+    this.movieService.getNowPlaying().subscribe((resp) => {
+      this.peliculasNuevas = resp.results;
     });
   }
 }
