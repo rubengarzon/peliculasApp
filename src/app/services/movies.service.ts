@@ -10,10 +10,12 @@ const apiKey = environment.apiKey;
   providedIn: 'root',
 })
 export class MoviesService {
+  private upcomingPage = 0;
+  private page = '';
   constructor(private http: HttpClient) {}
 
   ejecutarQuery<T>(query: string) {
-    query = `${URL}${query}?api_key=${apiKey}&language=es&include_image_language=es`;
+    query = `${URL}${query}?api_key=${apiKey}&language=es&include_image_language=es${this.page}`;
     return this.http.get<T>(query);
   }
 
@@ -28,7 +30,9 @@ export class MoviesService {
   }
 
   getUpcoming() {
+    this.upcomingPage++;
     const query = '/movie/upcoming';
+    this.page = '&page=' + this.upcomingPage;
     return this.ejecutarQuery<RespuestaMDB>(query);
   }
 }

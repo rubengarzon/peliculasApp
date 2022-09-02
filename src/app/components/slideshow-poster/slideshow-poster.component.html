@@ -1,6 +1,6 @@
 <swiper [config]="{ slidesPerView: 3.3, freeMode: true }">
   <ng-template swiperSlide *ngFor="let pelicula of peliculas">
-    <ion-card>
+    <ion-card (click)="verDetalle(pelicula.id)">
       <img [src]="pelicula.poster_path| imagen" class="poster">
     </ion-card>
   </ng-template>
