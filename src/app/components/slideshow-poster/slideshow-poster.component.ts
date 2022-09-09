@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Pelicula } from 'src/app/interfaces';
 import { DetalleComponent } from '../detalle/detalle.component';
@@ -10,6 +10,7 @@ import { DetalleComponent } from '../detalle/detalle.component';
 })
 export class SlideshowPosterComponent implements OnInit {
   @Input() peliculas: Pelicula[] = [];
+  @Output() refrescaLista = new EventEmitter();
   constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {}
@@ -20,6 +21,9 @@ export class SlideshowPosterComponent implements OnInit {
       componentProps: {
         id,
       },
+    });
+    modal.onDidDismiss().then((data) => {
+      this.refrescaLista.emit();
     });
     modal.present();
   }
